@@ -1,0 +1,24 @@
+{
+  "name": "swiggy-1",
+  "version": "1.0.0",
+  "description": "this is swiggy by madhur",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/Madhur3006/Swiggy-1"
+  },
+  "keywords": [
+    "Swiggy"
+  ],
+  "author": "Madhur",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}
