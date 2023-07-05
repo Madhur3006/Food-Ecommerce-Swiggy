@@ -1,0 +1,18 @@
+import React from 'react';
+import { useRouteError } from 'react-router-dom';
+
+const ErrorElement = () => {
+
+    const error = useRouteError()
+    console.log(error)
+
+    return ( 
+        <div>
+            <h1>oops!!!</h1>
+            <h1>Page not Found</h1>
+            <h1>{error.status}-{error.statusText}</h1>
+        </div>
+     );
+}
+ 
+export default ErrorElement;

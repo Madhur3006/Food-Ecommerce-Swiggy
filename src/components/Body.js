@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import RestaurantCard from './RestaurantCard';
 import { RestaurantList } from '../utilis/mockdata';
 import Shimmer from './ShimmerUI';
+import { Link } from 'react-router-dom';
 
 const Body = () => {
 
@@ -9,7 +10,7 @@ const Body = () => {
     const [inputValue, setInputValue] = useState('')
 
     const handleSearchButton = () => {
-        const filteredREs = listOfRestaurants.filter(restaurant => restaurant.info.name.toLowerCase.includes(inputValue.toLowerCase))
+        const filteredREs = RestaurantList.filter((restaurant) => restaurant.info.name.toLowerCase().includes(inputValue.toLowerCase()))
         setListOfRestaurants(filteredREs)
     }
 
@@ -42,7 +43,7 @@ const Body = () => {
             <div className='res-containor'>
                 {listOfRestaurants.map((restaurant, index) => {
                     return (
-                        <RestaurantCard key = {index} resData = {restaurant} />
+                        <Link key = {restaurant.info.id} to = {'/restaurant/'+restaurant.info.id}><RestaurantCard  resData = {restaurant} /></Link>
                     )
                 })}
             </div>
