@@ -13,15 +13,15 @@ const Body = () => {
         setListOfRestaurants(filteredREs)
     }
 
-    // useEffect(() => {
-    //     fetchData()
-    // }, [])
+    useEffect(() => {
+        fetchData()
+    }, [])
 
-    // const fetchData = async () => {
-    //     const data = await fetch('')
-    //     const json = await data.json()
-    //     setListOfRestaurants(json?.data?.success?.cards[5]?.gridWidget?.gridElements?.infoWithStyle?.restaurants)
-    // }
+    const fetchData = async () => {
+       const data = await fetch('')
+       const json = await data.json()
+       setListOfRestaurants(json?.data?.success?.cards[5]?.gridWidget?.gridElements?.infoWithStyle?.restaurants)
+     }
 
     const handleButton = () => {
         const updatedList = RestaurantList.filter((restaurant) => restaurant.info.avgRating>=4.0)
