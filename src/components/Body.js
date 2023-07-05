@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import RestaurantCard from './RestaurantCard';
 import { RestaurantList } from '../utilis/mockdata';
 import Shimmer from './ShimmerUI';
@@ -9,7 +9,7 @@ const Body = () => {
     const [inputValue, setInputValue] = useState('')
 
     const handleSearchButton = () => {
-        const filteredREs = listOfRestaurants.filter(restaurant => restaurant.info.name.tolowerCase().includes(inputValue.toLowerCase()))
+        const filteredREs = listOfRestaurants.filter(restaurant => restaurant.info.name.toLowerCase.includes(inputValue.toLowerCase))
         setListOfRestaurants(filteredREs)
     }
 
@@ -36,7 +36,7 @@ const Body = () => {
         <div className = 'body' >
             <div className='filter'>
                 <button className = 'filter-btm' onClick = {() => handleButton()}>Top Rated Restaurants</button>
-                <input type = 'text' value = {inputValue} onChange = {(e) => setInputValue(e.response.target)} />
+                <input type = 'text' value = {inputValue} onChange = {(e) => setInputValue(e.target.value)} />
                 <button onClick = {() => handleSearchButton()}>Search</button>
             </div>
             <div className='res-containor'>
