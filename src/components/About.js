@@ -1,8 +1,14 @@
 import React from 'react';
+import User from './user';
+import UserClass from './userClass';
 
 const About = () => {
     return ( 
-        <h1>About</h1>
+        <div>
+            <h1>About</h1>
+            <User />
+            <UserClass />
+        </div>
      );
 }
  
