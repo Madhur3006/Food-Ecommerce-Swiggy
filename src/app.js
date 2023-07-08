@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, lazy, Suspense, useContext} from 'react'
 import ReactDOM from 'react-dom'
 import Header from './components/Header';
 import Body from './components/Body';
@@ -8,13 +8,18 @@ import ErrorElement from './components/errorElement';
 import About from './components/About';
 import Contact from './components/Contact';
 import RestaurantMenu from './components/RestaurantMenu';
+import UserContext from './utilis/userContext';
+const Grocery = lazy(() => import('./components/InstaMart'))
 
 const AppLayout = () => {
+    const [user, setUser] = useState({})
     return ( 
-        <div className = 'App-containor'>
-            <Header />
-            <Outlet />
-        </div>
+       <UserContext.Provider value = {{user: user, setUser: setUser}}>
+            <div className = 'App-containor'>
+                <Header />
+                <Outlet />
+            </div> 
+       </UserContext.Provider>
      );
 }
 
@@ -36,8 +41,16 @@ const appRouter = createBrowserRouter([
                 element: <About />
             },
             {
+                path: '/grocery',
+                element: <Suspense fallback = {<h1>Loading..</h1>}><Grocery /></Suspense>
+            },
+            {
                 path: '/contact',
                 element: <Contact />
+            },
+            {
+                path: '/login',
+                element: '<>'
             }
         ],
         errorElement: <ErrorElement />  

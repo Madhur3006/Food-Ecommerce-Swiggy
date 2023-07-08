@@ -26,7 +26,7 @@ const Body = () => {
         setListOfRestaurants(updatedList)
     }
 
-    if(onlineStatus===false) return <h1>Internet Working</h1>
+    if(onlineStatus==false) return <h1>Internet not working</h1>
 
     if(listOfRestaurants===null) {
         return <Shimmer />

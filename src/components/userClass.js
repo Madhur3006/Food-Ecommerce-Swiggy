@@ -1,4 +1,5 @@
 import React from 'react';
+import UserContext from '../utilis/userContext';
 
 class UserClass extends React.Component {
 
@@ -24,6 +25,7 @@ class UserClass extends React.Component {
         this.setState({
             data: json 
         })
+
         console.log('componentDidMount')
     }
 
@@ -48,7 +50,9 @@ class UserClass extends React.Component {
                         count2: this.state.count2 + 1
                     })
                 }}>Increase</button>
-                <h2></h2>
+                <UserContext.Consumer>
+                    {({user}) => <h4>{user.name}</h4>}
+                </UserContext.Consumer>
                 <h2>Name: {name}</h2>
                 <h3>Company: {company}</h3>
                 <h3>Location: {location}</h3>
