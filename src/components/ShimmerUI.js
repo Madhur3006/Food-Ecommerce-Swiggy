@@ -2,7 +2,7 @@ import React from 'react';
 
 const Shimmer = () => {
     return ( 
-        <div className = 'shimmer-containor'>
+        <div data-testid = 'shimmer' className = 'shimmer-containor'>
             <div className = 'shimmer'></div>
             <div className = 'shimmer'></div>
             <div className = 'shimmer'></div>

@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div className = 'footer'>
-            <h2>Footer</h2>
+            <h2 data-testid = "footer">Footer</h2>
         </div>
     )
 }

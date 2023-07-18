@@ -1,5 +1,5 @@
 import React, {useState, lazy, Suspense, useContext} from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import Header from './components/Header';
 import Body from './components/Body';
 import Footer from './components/Footer';
@@ -9,17 +9,23 @@ import About from './components/About';
 import Contact from './components/Contact';
 import RestaurantMenu from './components/RestaurantMenu';
 import UserContext from './utilis/userContext';
+import Cart from './components/cart';
 const Grocery = lazy(() => import('./components/InstaMart'))
+import { Provider } from 'react-redux';
+import store from './utilis/store';
 
 const AppLayout = () => {
     const [user, setUser] = useState({})
     return ( 
-       <UserContext.Provider value = {{user: user, setUser: setUser}}>
-            <div className = 'App-containor'>
-                <Header />
-                <Outlet />
-            </div> 
-       </UserContext.Provider>
+       <Provider store = {store}>
+            <UserContext.Provider value = {{user: user, setUser: setUser}}>
+                <div className = 'App-containor'>
+                    <Header />
+                    <Outlet />
+                    <Footer />
+                </div> 
+            </UserContext.Provider>
+       </Provider>
      );
 }
 
@@ -49,8 +55,8 @@ const appRouter = createBrowserRouter([
                 element: <Contact />
             },
             {
-                path: '/login',
-                element: '<>'
+                path: '/cart',
+                element: <Cart/>
             }
         ],
         errorElement: <ErrorElement />  

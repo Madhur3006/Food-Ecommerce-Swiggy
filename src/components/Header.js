@@ -3,29 +3,42 @@ import { LOGO_URL } from '../utilis/constants';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utilis/useOnlineStatus';
 import UserContext from '../utilis/userContext';
+import { useSelector } from 'react-redux';
+import {login, logout } from '../utilis/userSlice';
+import { useDispatch } from 'react-redux';
+
 
 const Header = () => {
-    const [login, setLogin] = useState(false)
+    const userName = useSelector(store => store.user.userName)
+    const [user, setUser] = useState(userName)
     const onlineStatus = useOnlineStatus()
-    const {user, setUser} = useContext(UserContext)
+    const cartItems = useSelector(store => store.cart.items)
+    const isLoggedIn = useSelector(store => store.user.IsloggedIn)
+    const dispatch = useDispatch
+    console.log(cartItems)
+
+    const handleLogin = (user) => {
+        dispatch(login(user))
+    }
+
+    const handleLogout = () => {
+        dispatch(logout())
+    }
     return (
         <div className="header-containor">
             <div className="image-containor">
-                <Link to = '/'><img src={LOGO_URL} alt="logo" /></Link>
+                <Link to = '/'><img data-testid = 'logo' src={LOGO_URL} alt="logo" /></Link>
             </div>
             <div className = 'nav-containor'>
                 <ul>
-                    <li>{onlineStatus? 'online' : 'Offline'}</li>
+                    <li data-testid = "online-status">{onlineStatus? 'online' : 'Offline'}</li>
                     <Link to = '/grocery'><li>InstaMart</li></Link>
                     <Link to = '/'><li className="navlistitem1">Home</li></Link>
                     <Link to = '/about'><li className="navlistitem2">AboutUs</li></Link>
                     <Link to = '/contact'><li className="navlistitem3">ContactUs</li></Link>
-                    <li className="navlistitem4">Cart</li>
-                    {login ? <li>{user.name}</li> : <input type = 'text' placeholder = 'Username' value = {user.name} onChange = {(e) => setUser({
-                        name: e.target.value, 
-                        email: "madhurmangal5@gmail.com"
-                    })}/>}
-                    <button className = 'btn' onClick = {() => setLogin(!login)}>{ login  ? "logout" : "login" }</button>
+                    <Link to = '/cart'><li data-testid = "cart" className="navlistitem4">Cart - {cartItems.length}</li></Link>
+                    {isLoggedIn ? <li>{userName}</li> : <input type = 'text' placeholder = 'Username' value = {user} onChange = {(e) => setUser(e.target.value)}/>}
+                    {isLoggedIn ? <li><button onClick = {() => handleLogout()}>Logout</button></li> : <li><button onClick = {() => handleLogin(user)}>Login</button></li>}
                 </ul>
             </div> 
         </div>

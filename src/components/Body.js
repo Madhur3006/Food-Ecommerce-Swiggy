@@ -36,7 +36,7 @@ const Body = () => {
         <div className = 'body' >
             <div className='filter'>
                 <button className = 'filter-btm' onClick = {() => handleButton()}>Top Rated Restaurants</button>
-                <input type = 'text' value = {inputValue} onChange = {(e) => setInputValue(e.target.value)} />
+                <input data-testid = "search" type = 'text' value = {inputValue} onChange = {(e) => setInputValue(e.target.value)} />
                 <button onClick = {() => handleSearchButton()}>Search</button>
             </div>
             <div className='res-containor'>
